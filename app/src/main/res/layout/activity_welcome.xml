@@ -15,6 +15,7 @@
         android:padding="20dp">
 
         <TextView
+            android:id="@+id/welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome"
@@ -22,6 +23,7 @@
             android:textSize="40sp" />
 
         <TextView
+            android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -37,6 +39,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/btnLearn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -45,6 +48,7 @@
                 android:textColor="#fff" />
 
             <Button
+                android:id="@+id/btnView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
