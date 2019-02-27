@@ -1,6 +1,7 @@
 package com.example.licio.moringaeats;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
        // ButterKnife.bind(this);
 
         kenburns = findViewById(R.id.kenburns);
+
+        Typeface caviarFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
 
         AccelerateDecelerateInterpolator adi = new AccelerateDecelerateInterpolator();
         RandomTransitionGenerator generator = new RandomTransitionGenerator(3000, adi);
