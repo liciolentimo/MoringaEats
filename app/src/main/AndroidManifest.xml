@@ -17,8 +17,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".Welcome" />
-        <activity android:name=".Home" />
-        <activity android:name=".ViewRecipes"></activity>
+        <activity android:name=".Home">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Welcome">
+        </meta-data>
+        </activity>
+        <activity android:name=".ViewRecipes">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Welcome">
+            </meta-data>
+        </activity>
     </application>
 
 </manifest>
