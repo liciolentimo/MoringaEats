@@ -8,6 +8,7 @@
 
     <TextView
         android:id="@+id/txtRecipe"
+        android:layout_below="@id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
