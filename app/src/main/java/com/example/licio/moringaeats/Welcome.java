@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,8 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.desc) TextView mDescription;
     @BindView(R.id.btnLearn) Button mBtnLearn;
     @BindView(R.id.btnView) Button mBtnView;
+    @BindView(R.id.edtName) EditText mEdtName;
+    @BindView(R.id.btnEnter) Button mBtnEnter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
 
         mBtnLearn.setOnClickListener(this);
         mBtnView.setOnClickListener(this);
+        mBtnEnter.setOnClickListener(this);
 
     }
 
@@ -42,6 +46,9 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
 
             Intent intent2 = new Intent(Welcome.this,ViewRecipes.class);
             startActivity(intent2);
+
+        Intent intent3 = new Intent(Welcome.this,Home.class);
+        startActivity(intent3);
         }
     }
 
