@@ -42,6 +42,6 @@ public class Home extends AppCompatActivity {
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        mTxtRecipe.setText("The following recipes are loved by "+ name);
+        mTxtRecipe.setText("The following recipes are loved by " + name);
     }
 }

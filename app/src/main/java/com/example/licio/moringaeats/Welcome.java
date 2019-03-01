@@ -48,6 +48,8 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
             startActivity(intent2);
 
         Intent intent3 = new Intent(Welcome.this,Home.class);
+        String name = mEdtName.getText().toString();
+        intent3.putExtra("name", name);
         startActivity(intent3);
         }
     }
