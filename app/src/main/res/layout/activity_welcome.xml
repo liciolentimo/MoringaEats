@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="Having a good design pattern saves you lots of problems. A good pattern ensures that all your code is organized and thoroughly covered by Unit tests. It makes debugging easier, since you know where to look for a particular problem. It also greatly improves the maintainability of your code."
+            android:text="This is an Android application that enables a user to search for recipes and nutrition information according to the ingredients. Moringa Eats uses the Yummly API to parse information throughout the app."
             android:textColor="#fff"
             android:textSize="15sp" />
 
@@ -47,14 +47,14 @@
                 android:text="Learn More"
                 android:textColor="#fff" />
 
-            <Button
-                android:id="@+id/btnView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/btnlearn"
-                android:text="View"
-                android:textColor="#fff" />
+            <!--<Button-->
+                <!--android:id="@+id/btnView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="10dp"-->
+                <!--android:background="@drawable/btnlearn"-->
+                <!--android:text="View"-->
+                <!--android:textColor="#fff" />-->
 
         </LinearLayout>
 

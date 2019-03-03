@@ -44,8 +44,8 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
         Intent intent = new Intent(Welcome.this,Home.class);
         startActivity(intent);
 
-            Intent intent2 = new Intent(Welcome.this,ViewRecipes.class);
-            startActivity(intent2);
+//            Intent intent2 = new Intent(Welcome.this,ViewRecipes.class);
+//            startActivity(intent2);
 
         Intent intent3 = new Intent(Welcome.this,Home.class);
         String name = mEdtName.getText().toString();
