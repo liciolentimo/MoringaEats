@@ -9,3 +9,11 @@ This is an Android application that enables a user to search for recipes and nut
 * Appetizers
 * Drinks
 And many more!
+
+## Prerequisites
+* JDK
+* Android Studio
+
+## Installation
+* Clone the repo.
+* Run the app on your emulator or Android device.
