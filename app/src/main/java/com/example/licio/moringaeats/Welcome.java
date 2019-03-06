@@ -18,7 +18,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.welcome) TextView mWelcome;
     @BindView(R.id.desc) TextView mDescription;
     @BindView(R.id.btnLearn) Button mBtnLearn;
-    @BindView(R.id.btnView) Button mBtnView;
+    //@BindView(R.id.btnView) Button mBtnView;
     @BindView(R.id.edtName) EditText mEdtName;
     @BindView(R.id.btnEnter) Button mBtnEnter;
 
@@ -34,7 +34,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
         mDescription.setTypeface(caviarFont);
 
         mBtnLearn.setOnClickListener(this);
-        mBtnView.setOnClickListener(this);
+        //mBtnView.setOnClickListener(this);
         mBtnEnter.setOnClickListener(this);
 
     }
