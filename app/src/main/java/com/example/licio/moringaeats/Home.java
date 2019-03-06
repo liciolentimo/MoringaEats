@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,9 +24,11 @@ public class Home extends AppCompatActivity {
 
     public static final String TAG = Home.class.getSimpleName();
 
-    private String[] recipes = new String[] {"Sweet Potatoes with Apple Butter","Old-Fashioned Apple Pie","Beef Stew in Red Wine Sauce",
-    "Butternut Squash Soup with Crisp Pancetta","Hot Mulled Cider","Pear-Cranberry Hand Pies","Caramel Lady Apples","Three-Chile Beef Chili",
-    "Poached Egg over Spinach and Mushroom","10-Minute Energizing Oatmeal","Breakfast Bagel","Granola with Fresh Fruit"};
+    public ArrayList<Recipe> mRecipes = new ArrayList<>();
+
+//    private String[] recipes = new String[] {"Sweet Potatoes with Apple Butter","Old-Fashioned Apple Pie","Beef Stew in Red Wine Sauce",
+//    "Butternut Squash Soup with Crisp Pancetta","Hot Mulled Cider","Pear-Cranberry Hand Pies","Caramel Lady Apples","Three-Chile Beef Chili",
+//    "Poached Egg over Spinach and Mushroom","10-Minute Energizing Oatmeal","Breakfast Bagel","Granola with Fresh Fruit"};
 
     @BindView(R.id.listView)
     ListView mListView;
@@ -38,8 +41,8 @@ public class Home extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        final RecipesAdapter adapter = new RecipesAdapter(this, R.layout.support_simple_spinner_dropdown_item,recipes);
-        mListView.setAdapter(adapter);
+//        final RecipesAdapter adapter = new RecipesAdapter(this, R.layout.support_simple_spinner_dropdown_item,recipes);
+//        mListView.setAdapter(adapter);
 
                 mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -68,7 +71,10 @@ public class Home extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
+                    if (response.isSuccessful()) {
+                        Log.v(TAG, jsonData);
+                        mRecipes = yummlyService.processResults(response);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
