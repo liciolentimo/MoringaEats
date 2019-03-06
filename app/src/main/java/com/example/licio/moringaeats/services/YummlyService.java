@@ -1,4 +1,7 @@
-package com.example.licio.moringaeats;
+package com.example.licio.moringaeats.services;
+
+import com.example.licio.moringaeats.Constants;
+import com.example.licio.moringaeats.models.Recipe;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,12 +47,13 @@ public class YummlyService {
                     String recipeName = recipeJSON.getString("recipeName");
                     String smallImageUrls = recipeJSON.getString("smallImageUrls");
                     String course = recipeJSON.getString("course");
+                    String rating = recipeJSON.getString("rating");
                     ArrayList<String> ingredients = new ArrayList<>();
                     JSONArray ingredientsJSON = recipeJSON.getJSONObject("ingredients").getJSONArray("ingredients");
                     for (int y = 0; y < ingredientsJSON.length(); y++) {
                         ingredients.add(ingredientsJSON.get(y).toString());
                     }
-                    Recipe recipe = new Recipe(recipeName, smallImageUrls, course, ingredients);
+                    Recipe recipe = new Recipe(recipeName, smallImageUrls, course, ingredients,rating);
                     recipes.add(recipe);
                 }
             }

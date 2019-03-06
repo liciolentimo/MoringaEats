@@ -1,15 +1,14 @@
-package com.example.licio.moringaeats;
+package com.example.licio.moringaeats.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.licio.moringaeats.R;
+import com.example.licio.moringaeats.models.Recipe;
+import com.example.licio.moringaeats.services.YummlyService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,13 +43,13 @@ public class Home extends AppCompatActivity {
 //        final RecipesAdapter adapter = new RecipesAdapter(this, R.layout.support_simple_spinner_dropdown_item,recipes);
 //        mListView.setAdapter(adapter);
 
-                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String recipe = ((TextView)view).getText().toString();
-                Toast.makeText(Home.this, recipe, Toast.LENGTH_SHORT).show();
-            }
-        });
+//                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String recipe = ((TextView)view).getText().toString();
+//                Toast.makeText(Home.this, recipe, Toast.LENGTH_SHORT).show();
+//           }
+//        });
 
         Intent intent = getIntent();
         String ingredients = intent.getStringExtra("ingredients");
@@ -69,15 +68,20 @@ public class Home extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    if (response.isSuccessful()) {
-                        Log.v(TAG, jsonData);
+
+//                    String jsonData = response.body().string();
+//                    if (response.isSuccessful()) {
+//                        Log.v(TAG, jsonData);
                         mRecipes = yummlyService.processResults(response);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                        Home.this.runOnUiThread(new Runnable(){
+                            @Override
+                            public void run() {
+                                String[] recipeNames = new String[mRecipes.size()];
+                                for (int i = 0; i < recipeNames.length; i++) {
+                                    recipeNames[i] = mRecipes.get(i).getmRecipeName();
+                            }
+                        });
+
             }
         });
     }

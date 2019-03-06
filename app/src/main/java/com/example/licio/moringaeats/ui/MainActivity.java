@@ -1,4 +1,4 @@
-package com.example.licio.moringaeats;
+package com.example.licio.moringaeats.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Toast;
 
+import com.example.licio.moringaeats.R;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.flaviofaria.kenburnsview.RandomTransitionGenerator;
 import com.flaviofaria.kenburnsview.Transition;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     private KenBurnsView kenburns;
