@@ -3,10 +3,14 @@ package com.example.licio.moringaeats.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.licio.moringaeats.R;
+import com.example.licio.moringaeats.adapters.RecipeListAdapter;
 import com.example.licio.moringaeats.models.Recipe;
 import com.example.licio.moringaeats.services.YummlyService;
 
@@ -23,16 +27,17 @@ public class Home extends AppCompatActivity {
 
     public static final String TAG = Home.class.getSimpleName();
 
-    public ArrayList<Recipe> mRecipes = new ArrayList<>();
+    public ArrayList<Recipe> recipes = new ArrayList<>();
 
 //    private String[] recipes = new String[] {"Sweet Potatoes with Apple Butter","Old-Fashioned Apple Pie","Beef Stew in Red Wine Sauce",
 //    "Butternut Squash Soup with Crisp Pancetta","Hot Mulled Cider","Pear-Cranberry Hand Pies","Caramel Lady Apples","Three-Chile Beef Chili",
 //    "Poached Egg over Spinach and Mushroom","10-Minute Energizing Oatmeal","Breakfast Bagel","Granola with Fresh Fruit"};
 
-    @BindView(R.id.listView)
-    ListView mListView;
-    @BindView(R.id.txtRecipe)
-    TextView mTxtRecipe;
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+    private RecipeListAdapter mAdapter;
+//    @BindView(R.id.txtRecipe)
+//    TextView mTxtRecipe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,16 +74,19 @@ public class Home extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
-//                    String jsonData = response.body().string();
+                   //String jsonData = response.body().string();
 //                    if (response.isSuccessful()) {
-//                        Log.v(TAG, jsonData);
-                        mRecipes = yummlyService.processResults(response);
+                      // Log.v(TAG, jsonData);
+                        recipes = yummlyService.processResults(response);
                         Home.this.runOnUiThread(new Runnable(){
                             @Override
                             public void run() {
-                                String[] recipeNames = new String[mRecipes.size()];
-                                for (int i = 0; i < recipeNames.length; i++) {
-                                    recipeNames[i] = mRecipes.get(i).getmRecipeName();
+                                mAdapter = new RecipeListAdapter(getApplicationContext(), recipes);
+                                mRecyclerView.setAdapter(mAdapter);
+                                RecyclerView.LayoutManager layoutManager =
+                                        new LinearLayoutManager(Home.this);
+                                mRecyclerView.setLayoutManager(layoutManager);
+                                mRecyclerView.setHasFixedSize(true);
                             }
                         });
 
