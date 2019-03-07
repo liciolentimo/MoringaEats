@@ -51,7 +51,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Brunch"
             android:id="@+id/sourceTextView"
             android:layout_below="@+id/recipeNameTextView"
             android:layout_alignParentLeft="true"
@@ -68,7 +67,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/saveRecipeButton"
             android:paddingLeft="30dp"
             android:paddingTop="20dp"
             android:paddingRight="30dp"
@@ -83,12 +81,13 @@
                 android:layout_marginBottom="10dp"
                 android:drawablePadding="4dp"
                 android:gravity="center"
-                android:text="ingredients"
+                android:textColor="@color/white"
+                android:text="ingredients:"
                 android:textSize="15sp"
                 android:textStyle="italic" />
 
             <Button
-                android:id="@+id/getRecipeButton"
+                android:id="@+id/viewRecipeButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
