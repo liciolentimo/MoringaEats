@@ -9,12 +9,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/colorPrimaryDark">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:id="@+id/restaurantImageView"
+        android:id="@+id/recipeImageView"
         android:scaleType="centerCrop" />
 
     <RelativeLayout
@@ -74,7 +74,7 @@
             android:paddingRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
 
             <TextView
                 android:id="@+id/ingredientList"
@@ -87,15 +87,28 @@
                 android:textSize="15sp"
                 android:textStyle="italic" />
 
+            <Button
+                android:id="@+id/getRecipeButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/ingredientList"
+                android:background="@drawable/btnlearn"
+                android:text="View Recipe"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+
+
         </LinearLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save Restaurant"
+            android:text="Save Recipe"
             android:id="@+id/saveRecipeButton"
             android:layout_alignParentBottom="true"
             android:background="@color/colorAccent"
+            android:textColor="@color/white"
             android:textSize="15sp" />
     </RelativeLayout>
     </LinearLayout>
