@@ -1,38 +1,63 @@
 package com.example.licio.moringaeats.models;
 
+
+
+
+
 import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class Recipe {
-    private String mRecipeName;
-    private String mImageUrl;
-    private String mCourse;
-    private String mRating;
-    private ArrayList<String> mIngredients = new ArrayList<>();
+    String recipeName;
+    List<String> ingredients = new ArrayList<>();
+    String imageUrl;
+    String rating;
+    String source;
+    String id;
+    String index;
 
-    public Recipe(String recipeName,String smallImageUrls, String course, ArrayList<String> ingredients, String rating){
-        this.mRecipeName = recipeName;
-        this.mImageUrl = smallImageUrls;
-        this.mCourse = course;
-        this.mIngredients = ingredients;
-        this.mRating = rating;
+
+    public Recipe(String recipeName, ArrayList<String> ingredients, String imageUrl, String rating, String source, String id) {
+        this.recipeName = recipeName;
+        this.ingredients = ingredients;
+        this.imageUrl = imageUrl;
+        this.rating = rating;
+        this.source = source;
+        this.id = id;
+        this.index = "not_specified";
+
     }
 
-    public String getmRecipeName() {
-        return mRecipeName;
+    public String getRecipeName() {
+        return recipeName;
     }
 
-    public String getmImageUrl() {
-        return mImageUrl;
+    public List<String> getIngredients() {
+        return ingredients;
     }
 
-    public String getmCourse() {
-        return mCourse;
+    public String getImageUrl() {
+        return  imageUrl;
     }
 
-    public ArrayList<String> getmIngredients() {
-        return mIngredients;
+    public String getRating() {
+        return rating;
     }
-    public  String getmRating(){
-        return mRating;
+
+    public String getSource() {
+        return source;
+    }
+
+    public String getId() { return id; }
+
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
