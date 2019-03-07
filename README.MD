@@ -19,15 +19,15 @@ Enter your search criteria according to ingredients and click on `Enter` button.
 * Android Studio 3.2 and above(recommended)
 
 ## Required libraries and dependencies
-API Level 27
-Gradle Version 4.6
-` implementation 'com.squareup.picasso:picasso:2.71828'`
-`implementation 'org.parceler:parceler-api:1.1.12'`
- `annotationProcessor 'org.parceler:parceler:1.1.12'`
- `implementation 'com.squareup.okhttp3:okhttp:3.12.1'`
- `implementation 'com.flaviofaria:kenburnsview:1.0.7'`
- `implementation 'com.jakewharton:butterknife:8.8.1'`
-  `annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'`
+* API Level 27
+* Gradle Version 4.6
+``` implementation 'com.squareup.picasso:picasso:2.71828'
+implementation 'org.parceler:parceler-api:1.1.12'
+ annotationProcessor 'org.parceler:parceler:1.1.12'
+ implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+ implementation 'com.flaviofaria:kenburnsview:1.0.7'
+ implementation 'com.jakewharton:butterknife:8.8.1'
+ annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'```
 
 ## Installation
 * Clone the repo.
