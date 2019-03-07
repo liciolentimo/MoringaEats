@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.licio.moringaeats.R;
 import com.example.licio.moringaeats.models.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -59,9 +60,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
         }
 
         public void bindRecipe(Recipe recipe) {
-            mRecipeNameTextView.setText(recipe.getmRecipeName());
-            mCuisineTextView.setText(recipe.getmCourse());
-            mRatingTextView.setText("Rating: " + recipe.getmRating() + "/5");
+            mRecipeNameTextView.setText(recipe.getRecipeName());
+            mCuisineTextView.setText(recipe.getSource());
+            mRatingTextView.setText("Rating: " + recipe.getRating() + "/5");
+            Picasso.get().load(recipe.getImageUrl()).into(mRecipeImageView);
         }
     }
 }
