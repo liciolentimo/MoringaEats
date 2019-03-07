@@ -4,11 +4,12 @@ package com.example.licio.moringaeats.models;
 
 
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+@Parcel
 public class Recipe {
     String recipeName;
     List<String> ingredients = new ArrayList<>();
@@ -18,6 +19,8 @@ public class Recipe {
     String id;
     String index;
 
+
+    public Recipe() {}
 
     public Recipe(String recipeName, ArrayList<String> ingredients, String imageUrl, String rating, String source, String id) {
         this.recipeName = recipeName;
