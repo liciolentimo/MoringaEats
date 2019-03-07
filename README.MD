@@ -18,19 +18,20 @@ Enter your search criteria according to ingredients and click on `Enter` button.
 * JDK
 * Android Studio 3.2 and above(recommended)
 
+## Installation
+* Clone the repo.
+* Open it in Android Studio
+* The below dependencies are required in case you get build errors 
+* After installing the above dependencies and you have a successful build, run the application on your Android device or emulator in Android Studio.
+
 ## Required libraries and dependencies
 * API Level 27
 * Gradle Version 4.6
-``` implementation 'com.squareup.picasso:picasso:2.71828'
+``` implementation 'com.squareup.picasso:picasso:2.71828
 implementation 'org.parceler:parceler-api:1.1.12'
  annotationProcessor 'org.parceler:parceler:1.1.12'
  implementation 'com.squareup.okhttp3:okhttp:3.12.1'
  implementation 'com.flaviofaria:kenburnsview:1.0.7'
  implementation 'com.jakewharton:butterknife:8.8.1'
- annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'```
+ annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1```
 
-## Installation
-* Clone the repo.
-* Open it in Android Studio
-* The above dependencies are required in case you get build errors 
-* After installing the above dependencies and you have a successful build, run the application on your Android device or emulator in Android Studio.
