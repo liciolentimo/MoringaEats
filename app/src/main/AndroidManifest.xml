@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.licio.moringaeats">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,17 +20,16 @@
         </activity>
         <activity android:name=".ui.Welcome" />
         <activity android:name=".ui.Home">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".ui.Welcome">
-        </meta-data>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.Welcome"></meta-data>
         </activity>
         <activity android:name=".ViewRecipes">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.Welcome">
-            </meta-data>
+                android:value=".ui.Welcome"></meta-data>
         </activity>
+        <activity android:name=".ui.RecipeDetailActivity"></activity>
     </application>
 
 </manifest>
