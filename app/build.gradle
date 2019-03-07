@@ -9,10 +9,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'YUMMLY_TOKEN', YummlyToken
+        it.buildConfigField 'String', 'YUMMLY_API_KEY', YummlyApiKey
+        it.buildConfigField 'String', 'YUMMLY_APP_ID', YummlyAppId
+
     }
     buildTypes {
         release {
@@ -26,6 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.0.0'
     implementation 'com.android.support:design:27.0.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.flaviofaria:kenburnsview:1.0.7'

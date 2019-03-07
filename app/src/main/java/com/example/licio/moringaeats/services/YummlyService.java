@@ -1,5 +1,7 @@
 package com.example.licio.moringaeats.services;
 
+import android.util.Log;
+
 import com.example.licio.moringaeats.Constants;
 import com.example.licio.moringaeats.models.Recipe;
 
@@ -23,13 +25,19 @@ public class YummlyService {
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
-        urlBuilder.addQueryParameter(Constants.YUMMLY_INGREDIENT_QUERY_PARAMETER, ingredients);
+        urlBuilder
+                .addQueryParameter("_app_id",Constants.YUMMLY_APP_ID)
+                .addQueryParameter("_app_key",Constants.YUMMLY_API_KEY)
+                .addQueryParameter(Constants.SEARCH_QUERY_INGREDIENT, ingredients);
         String url = urlBuilder.build().toString();
 
         Request request = new Request.Builder()
                 .url(url)
-                .header("Authorization", Constants.YUMMLY_TOKEN)
+                .header(Constants.API_ID_QUERY_PARAMETER, Constants.YUMMLY_APP_ID)
+                .header(Constants.API_KEY_QUERY_PARAMETER, Constants.YUMMLY_API_KEY)
                 .build();
+
+        Log.d("url", url);
 
         Call call = client.newCall(request);
         call.enqueue(callback);
@@ -37,24 +45,32 @@ public class YummlyService {
 
     public ArrayList<Recipe> processResults(Response response) {
         ArrayList<Recipe> recipes = new ArrayList<>();
+
         try {
-            String jsonData = response.body().string();
-            JSONObject yummlyJSON = new JSONObject(jsonData);
-            JSONArray recipesJSON = yummlyJSON.getJSONArray("recipes");
             if (response.isSuccessful()) {
-                for (int i = 0; i < recipesJSON.length(); i++) {
-                    JSONObject recipeJSON = recipesJSON.getJSONObject(i);
+                String jsonData = response.body().string();
+
+                JSONObject yummlyJSON = new JSONObject(jsonData);
+                JSONArray matchesJSON = yummlyJSON.getJSONArray("matches");
+                for (int i = 0; i < matchesJSON.length(); i++) {
+                    JSONObject recipeJSON = matchesJSON.getJSONObject(i);
                     String recipeName = recipeJSON.getString("recipeName");
-                    String smallImageUrls = recipeJSON.getString("smallImageUrls");
-                    String course = recipeJSON.getString("course");
-                    String rating = recipeJSON.getString("rating");
+
                     ArrayList<String> ingredients = new ArrayList<>();
-                    JSONArray ingredientsJSON = recipeJSON.getJSONObject("ingredients").getJSONArray("ingredients");
+                    JSONArray ingredientsJSON = recipeJSON.getJSONArray("ingredients");
+
                     for (int y = 0; y < ingredientsJSON.length(); y++) {
                         ingredients.add(ingredientsJSON.get(y).toString());
                     }
-                    Recipe recipe = new Recipe(recipeName, smallImageUrls, course, ingredients,rating);
+
+                    String imageUrl = recipeJSON.getJSONObject("imageUrlsBySize").getString("90");
+                    String rating = recipeJSON.getString("rating");
+                    String source = recipeJSON.getString("sourceDisplayName");
+                    String id = recipeJSON.getString("id");
+
+                    Recipe recipe = new Recipe(recipeName, ingredients, imageUrl, rating, source, id);
                     recipes.add(recipe);
+
                 }
             }
         } catch (IOException e) {
@@ -64,4 +80,6 @@ public class YummlyService {
         }
         return recipes;
     }
+
 }
+
