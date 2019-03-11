@@ -14,6 +14,10 @@ Enter your search criteria according to ingredients and click on `Enter` button.
 
 ![Welcome Acivity](https://kakishamemoirs.files.wordpress.com/2019/03/screenshot_20190307-161547.png "Welcome Activity")   ![Recipes List](https://kakishamemoirs.files.wordpress.com/2019/03/screenshot_20190307-161602.png "Recipes List")   ![View Recipe Details](https://kakishamemoirs.files.wordpress.com/2019/03/screenshot_20190307-161611.png  "View Recipe Details")
 
+## Author 
+
+[MIT](LICENSE) © Licio Lentimo
+
 ## Prerequisites
 * JDK
 * Android Studio 3.2 and above(recommended)
@@ -23,6 +27,7 @@ Enter your search criteria according to ingredients and click on `Enter` button.
 * Open it in Android Studio
 * The below dependencies are required in case you get build errors 
 * After installing the above dependencies and you have a successful build, run the application on your Android device or emulator in Android Studio.
+
 
 ## Required libraries and dependencies
 * API Level 27
