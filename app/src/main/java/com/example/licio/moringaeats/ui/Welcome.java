@@ -42,8 +42,8 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(Welcome.this,Home.class);
-        startActivity(intent);
+//        Intent intent = new Intent(Welcome.this,Home.class);
+//        startActivity(intent);
 
 //            Intent intent2 = new Intent(Welcome.this,ViewRecipes.class);
 //            startActivity(intent2);
