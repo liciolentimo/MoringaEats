@@ -22,14 +22,19 @@
         <activity android:name=".ui.Home">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.Welcome"></meta-data>
+                android:value=".ui.Welcome" />
         </activity>
         <activity android:name=".ui.ViewRecipes">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.Welcome"></meta-data>
+                android:value=".ui.Welcome" />
         </activity>
-        <activity android:name=".ui.RecipeDetailActivity"></activity>
+        <activity android:name=".ui.RecipeDetailActivity" />
+        <activity
+            android:theme="@style/NoBar"
+            android:name=".ui.CreateAccount">
+
+        </activity>
     </application>
 
 </manifest>

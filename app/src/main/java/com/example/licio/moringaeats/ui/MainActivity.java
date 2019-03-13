@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTransitionEnd(Transition transition) {
-                Intent intent = new Intent(MainActivity.this,Welcome.class);
+                Intent intent = new Intent(MainActivity.this,CreateAccount.class);
                 startActivity(intent);
             }
         });
