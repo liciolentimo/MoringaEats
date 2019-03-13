@@ -31,10 +31,9 @@
         </activity>
         <activity android:name=".ui.RecipeDetailActivity" />
         <activity
-            android:theme="@style/NoBar"
-            android:name=".ui.CreateAccount">
-
-        </activity>
+            android:name=".ui.CreateAccount"
+            android:theme="@style/NoBar"></activity>
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>
