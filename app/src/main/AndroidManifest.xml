@@ -33,7 +33,9 @@
         <activity
             android:name=".ui.CreateAccount"
             android:theme="@style/NoBar"></activity>
-        <activity android:name=".ui.LoginActivity"></activity>
+        <activity
+            android:theme="@style/NoBar"
+            android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>
