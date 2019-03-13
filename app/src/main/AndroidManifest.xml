@@ -24,7 +24,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.Welcome"></meta-data>
         </activity>
-        <activity android:name=".ViewRecipes">
+        <activity android:name=".ui.ViewRecipes">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.Welcome"></meta-data>

@@ -18,6 +18,7 @@ public class Recipe {
     String source;
     String id;
     String index;
+    String pushId;
 
 
     public Recipe() {}
@@ -62,5 +63,12 @@ public class Recipe {
 
     public void setIndex(String index) {
         this.index = index;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

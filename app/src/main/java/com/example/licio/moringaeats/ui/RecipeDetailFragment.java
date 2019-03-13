@@ -11,9 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.licio.moringaeats.Constants;
 import com.example.licio.moringaeats.R;
 import com.example.licio.moringaeats.models.Recipe;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -79,6 +85,21 @@ public class RecipeDetailFragment extends Fragment implements View.OnClickListen
         if (v == mViewRecipeButton) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yummly.co/#recipe/" + mRecipe.getId()));
             startActivity(webIntent);
+        }
+        if(v == mSaveRecipeButton){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            DatabaseReference recipeRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RECIPES)
+                    .child(uid);
+
+            DatabaseReference pushRef = recipeRef.push();
+            String pushId = pushRef.getKey();
+            mRecipe.setPushId(pushId);
+            pushRef.setValue(mRecipe);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
 
     }
