@@ -66,21 +66,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edtName"
-            android:drawablePadding="10dp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:hint="Enter Ingredient"/>
+        <!--<EditText-->
+            <!--android:id="@+id/edtName"-->
+            <!--android:drawablePadding="10dp"-->
+            <!--android:layout_width="350dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter Ingredient"/>-->
         <Button
             android:id="@+id/btnEnter"
-            android:text="Enter"
+            android:text="Find Recipes"
             android:paddingTop="15dp"
             android:background="@drawable/btnlearn"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+
+
     </LinearLayout>
 
+
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary" />
+
+        <com.miguelcatalan.materialsearchview.MaterialSearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 </LinearLayout>
+
