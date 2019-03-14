@@ -20,7 +20,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.desc) TextView mDescription;
     @BindView(R.id.btnLearn) Button mBtnLearn;
     //@BindView(R.id.btnView) Button mBtnView;
-    @BindView(R.id.edtName) EditText mEdtName;
+   // @BindView(R.id.edtName) EditText mEdtName;
     @BindView(R.id.btnEnter) Button mBtnEnter;
 
     @Override
@@ -50,8 +50,8 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
             }
             if(v == mBtnEnter) {
                 Intent intent3 = new Intent(Welcome.this, Home.class);
-                String ingredients = mEdtName.getText().toString();
-                intent3.putExtra("ingredients", ingredients);
+//                String ingredients = mEdtName.getText().toString();
+//                intent3.putExtra("ingredients", ingredients);
                 startActivity(intent3);
             }
 

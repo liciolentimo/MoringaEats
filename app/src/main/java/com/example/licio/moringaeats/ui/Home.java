@@ -1,6 +1,7 @@
 package com.example.licio.moringaeats.ui;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,8 @@ import com.example.licio.moringaeats.R;
 import com.example.licio.moringaeats.adapters.RecipeListAdapter;
 import com.example.licio.moringaeats.models.Recipe;
 import com.example.licio.moringaeats.services.YummlyService;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +27,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class Home extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     public static final String TAG = Home.class.getSimpleName();
 
@@ -44,6 +49,19 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                //display welcome message
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
+                }
+            }
+        };
+
 
 //        final RecipesAdapter adapter = new RecipesAdapter(this, R.layout.support_simple_spinner_dropdown_item,recipes);
 //        mListView.setAdapter(adapter);
