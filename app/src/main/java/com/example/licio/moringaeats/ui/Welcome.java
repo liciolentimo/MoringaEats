@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,9 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.licio.moringaeats.Constants;
 import com.example.licio.moringaeats.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import butterknife.BindView;
@@ -29,9 +36,12 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     //@BindView(R.id.btnView) Button mBtnView;
    // @BindView(R.id.edtName) EditText mEdtName;
     @BindView(R.id.btnEnter) Button mBtnEnter;
+    public static final String TAG = MainActivity.class.getSimpleName();
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mSearchedIngredientReference;
+    private ValueEventListener mSearchedIngredientReferenceListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +70,43 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
             }
         };
 
+        mSearchedIngredientReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_RECIPES);
+
+        mSearchedIngredientReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ingredientsSnapshot : dataSnapshot.getChildren()) {
+                    String ingredients = ingredientsSnapshot.getValue().toString();
+                    Log.d("Ingredients updated", "ingredients: " + ingredients);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) { //update UI here if error occurred.
+
+            }
+
+        });
+
+        }
+
+    @Override
+    public void onClick(View v) {
+//        Intent intent = new Intent(Welcome.this,Home.class);
+//        startActivity(intent);
+        if(v == mBtnLearn) {
+            Intent intent2 = new Intent(Welcome.this, ViewRecipes.class);
+            startActivity(intent2);
+        }
+        if(v == mBtnEnter) {
+            Intent intent3 = new Intent(Welcome.this, Home.class);
+//                String ingredients = mEdtName.getText().toString();
+//                intent3.putExtra("ingredients", ingredients);
+            startActivity(intent3);
+        }
 
     }
 
@@ -89,21 +136,26 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
-//        Intent intent = new Intent(Welcome.this,Home.class);
-//        startActivity(intent);
-            if(v == mBtnLearn) {
-                Intent intent2 = new Intent(Welcome.this, ViewRecipes.class);
-                startActivity(intent2);
-            }
-            if(v == mBtnEnter) {
-                Intent intent3 = new Intent(Welcome.this, Home.class);
-//                String ingredients = mEdtName.getText().toString();
-//                intent3.putExtra("ingredients", ingredients);
-                startActivity(intent3);
-            }
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mSearchedIngredientReference.removeEventListener(mSearchedIngredientReferenceListener);
+//    }
+
+
     }
 
 
