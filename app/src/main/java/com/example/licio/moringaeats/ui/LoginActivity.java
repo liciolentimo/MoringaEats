@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button mBtnLogin;
     @BindView(R.id.txtSignUpText)
     TextView mTxtSignUpText;
+    @BindView(R.id.txtForgotPassword)TextView mTxtForgotPassword;
 
     public static final String TAG = LoginActivity.class.getSimpleName();
 
@@ -66,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mTxtSignUpText.setOnClickListener(this);
         mBtnLogin.setOnClickListener(this);
+        mTxtForgotPassword.setOnClickListener(this);
     }
 
     private void createAuthProgressDialog() {
@@ -73,6 +75,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuthProgressDialog.setTitle("Loading...");
         mAuthProgressDialog.setMessage("Authenticating with Firebase...");
         mAuthProgressDialog.setCancelable(false);
+    }
+
+    private void resetPassword(String emailAddress){
+        mAuth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LoginActivity.this, "Email sent.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     @Override
@@ -97,6 +112,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         if (view == mBtnLogin) {
             loginwithPassword();
+        }
+        if(view == mTxtForgotPassword){
+            resetPassword(mTxtEmail.getText().toString());
         }
     }
 
