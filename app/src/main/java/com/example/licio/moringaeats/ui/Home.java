@@ -1,21 +1,30 @@
 package com.example.licio.moringaeats.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.licio.moringaeats.Constants;
 import com.example.licio.moringaeats.R;
 import com.example.licio.moringaeats.adapters.RecipeListAdapter;
 import com.example.licio.moringaeats.models.Recipe;
 import com.example.licio.moringaeats.services.YummlyService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,12 +36,15 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class Home extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
     public static final String TAG = Home.class.getSimpleName();
 
     public ArrayList<Recipe> recipes = new ArrayList<>();
+
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mRecentIngredient;
 
 //    private String[] recipes = new String[] {"Sweet Potatoes with Apple Butter","Old-Fashioned Apple Pie","Beef Stew in Red Wine Sauce",
 //    "Butternut Squash Soup with Crisp Pancetta","Hot Mulled Cider","Pear-Cranberry Hand Pies","Caramel Lady Apples","Three-Chile Beef Chili",
@@ -50,17 +62,7 @@ public class Home extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                //display welcome message
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
-                }
-            }
-        };
+
 
 
 //        final RecipesAdapter adapter = new RecipesAdapter(this, R.layout.support_simple_spinner_dropdown_item,recipes);
@@ -79,7 +81,52 @@ public class Home extends AppCompatActivity {
         //mTxtRecipe.setText("The following recipes are loved by " + name);
 
         getRecipes(ingredients);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentIngredient = mSharedPreferences.getString(Constants.PREFERENCES_INGREDIENTS_KEY, null);
+
+        if (mRecentIngredient != null) {
+            getRecipes(mRecentIngredient);
+        }
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_search, menu);
+        ButterKnife.bind(this);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                addToSharedPreferences(query);
+                getRecipes(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void getRecipes(String ingredients){
         final YummlyService yummlyService = new YummlyService();
@@ -111,4 +158,9 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
+    private void addToSharedPreferences(String ingredients) {
+        mEditor.putString(Constants.PREFERENCES_INGREDIENTS_KEY,ingredients).apply();
+    }
+
 }
