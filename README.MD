@@ -10,7 +10,7 @@ This is an Android application that enables a user to search for recipes and nut
 * Drinks
 And many more!
 
-Enter your search criteria according to ingredients and click on `Enter` button. This will display a list of recipes and you can click on an individual recipe and see its ingredients.
+Enter your search criteria according to ingredients and click on `Enter` button. This will display a list of recipes and you can click on an individual recipe and see its ingredients. You also have the option of saving a particular recipe.
 
 ![Welcome Acivity](https://kakishamemoirs.files.wordpress.com/2019/03/screenshot_20190307-161547.png "Welcome Activity")   ![Recipes List](https://kakishamemoirs.files.wordpress.com/2019/03/screenshot_20190307-161602.png "Recipes List")   ![View Recipe Details](https://kakishamemoirs.files.wordpress.com/2019/03/screenshot_20190307-161611.png  "View Recipe Details")
 
@@ -37,6 +37,10 @@ implementation 'org.parceler:parceler-api:1.1.12'
  annotationProcessor 'org.parceler:parceler:1.1.12'
  implementation 'com.squareup.okhttp3:okhttp:3.12.1'
  implementation 'com.flaviofaria:kenburnsview:1.0.7'
+  implementation 'com.google.firebase:firebase-database:16.0.1'
+   implementation 'com.google.firebase:firebase-core:16.0.1'
+   implementation 'com.firebaseui:firebase-ui-database:0.4.1'
+   implementation 'com.google.firebase:firebase-auth:16.0.1'
  implementation 'com.jakewharton:butterknife:8.8.1'
  annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1```
 
