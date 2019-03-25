@@ -22,62 +22,62 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
-public class FirebaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
     View mView;
     Context mContext;
+    public ImageView mRecipeImageView;
 
     public FirebaseViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
+        //itemView.setOnClickListener(this);
     }
 
     public void onBindRecipe(Recipe recipe){
-        ImageView recipeImageView = (ImageView) mView.findViewById(R.id.recipeImage);
-        TextView nameTextView = (TextView) mView.findViewById(R.id.recipeName);
-        TextView categoryTextView = (TextView) mView.findViewById(R.id.txtCuisine);
-        TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
+        mRecipeImageView = (ImageView) mView.findViewById(R.id.recipeImageView);
+        ImageView mRecipeImageView = (ImageView) mView.findViewById(R.id.recipeImageView);
+        TextView mRecipeNameTextView = (TextView) mView.findViewById(R.id.recipeNameTextView);
+        TextView mSourceTextView = (TextView) mView.findViewById(R.id.sourceTextView);
 
         Picasso.get()
                 .load(recipe.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
-                .into(recipeImageView);
+                .into(mRecipeImageView);
 
-        nameTextView.setText(recipe.getRecipeName());
-        categoryTextView.setText(recipe.getSource());
-        ratingTextView.setText("Rating: " + recipe.getRating() + "/5");
+        mRecipeNameTextView.setText(recipe.getRecipeName());
+        mSourceTextView.setText("Posted By: " + recipe.getSource());
     }
 
-    @Override
-    public void onClick(View view) {
-        final ArrayList<Recipe> recipes = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPES);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    recipes.add(snapshot.getValue(Recipe.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-
-                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("restaurants", Parcels.wrap(recipes));
-
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
+//    @Override
+//    public void onClick(View view) {
+//        final ArrayList<Recipe> recipes = new ArrayList<>();
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RECIPES);
+//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    recipes.add(snapshot.getValue(Recipe.class));
+//                }
+//
+//                int itemPosition = getLayoutPosition();
+//
+//                Intent intent = new Intent(mContext, RecipeDetailActivity.class);
+//                intent.putExtra("position", itemPosition + "");
+//                intent.putExtra("restaurants", Parcels.wrap(recipes));
+//
+//                mContext.startActivity(intent);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
+//    }
 
             }
