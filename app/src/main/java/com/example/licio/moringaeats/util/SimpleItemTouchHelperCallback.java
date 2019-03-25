@@ -1,5 +1,4 @@
 package com.example.licio.moringaeats.util;
-
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
